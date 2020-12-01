@@ -22,7 +22,7 @@ resource "azurerm_app_service_plan" "spacegame" {
   }
 }
 
-resource "azurerm_app_service" "spacegame_dev" {
+resource "azurerm_app_service" "spacegame" {
   name                = local.app_service_name
   location            = azurerm_resource_group.spacegame.location
   resource_group_name = azurerm_resource_group.spacegame.name
@@ -34,11 +34,11 @@ resource "azurerm_app_service" "spacegame_dev" {
   }
 }
 
-output "appservice_name_dev" {
-  value       = azurerm_app_service.spacegame_dev.name
-  description = "The App Service name for the dev environment"
+output "appservice_name" {
+  value       = azurerm_app_service.spacegame.name
+  description = "The App Service name for the ${lower(terraform.workspace)} environment"
 }
-output "website_hostname_dev" {
-  value       = azurerm_app_service.spacegame_dev.default_site_hostname
-  description = "The hostname of the website in the dev environment"
+output "website_hostname" {
+  value       = azurerm_app_service.spacegame.default_site_hostname
+  description = "The hostname of the website in the ${lower(terraform.workspace)} environment"
 }
