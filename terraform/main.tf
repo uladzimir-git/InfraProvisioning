@@ -3,10 +3,6 @@ provider "azurerm" {
   features {}
 }
 
-resource "random_integer" "app_service_name_suffix" {
-  min = 1000
-  max = 9999
-}
 
 resource "azurerm_resource_group" "spacegame" {
   name     = local.resource_group_name
@@ -14,7 +10,7 @@ resource "azurerm_resource_group" "spacegame" {
 }
 
 resource "azurerm_app_service_plan" "spacegame" {
-  name                = var.app_service_plan_name
+  name                = local.app_service_plan_name
   location            = azurerm_resource_group.spacegame.location
   resource_group_name = azurerm_resource_group.spacegame.name
   kind                = "Linux"
@@ -27,7 +23,7 @@ resource "azurerm_app_service_plan" "spacegame" {
 }
 
 resource "azurerm_app_service" "spacegame_dev" {
-  name                = "${var.app_service_name_prefix}-dev-${random_integer.app_service_name_suffix.result}"
+  name                = local.app_service_name
   location            = azurerm_resource_group.spacegame.location
   resource_group_name = azurerm_resource_group.spacegame.name
   app_service_plan_id = azurerm_app_service_plan.spacegame.id
