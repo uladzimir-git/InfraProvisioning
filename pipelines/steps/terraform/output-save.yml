@@ -18,7 +18,7 @@ steps:
         --subscription $(ARM_SUBSCRIPTION_ID) \
         --blob-type AppendBlob \
         --source $(Build.ArtifactStagingDirectory)/terraform-output.json \
-        --destination-account-name obrameterraform${{ parameters.workspace }} \
+        --account-name obrameterraform${{ parameters.workspace }} \
         --destination-container terraformoutput \
         --destination-blob ${{ parameters.project }}-${{ parameters.workspace }}.json
     displayName: Save Terraform output to Storage
