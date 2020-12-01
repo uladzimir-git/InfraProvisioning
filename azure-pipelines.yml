@@ -1,6 +1,6 @@
 
 variables:
-  project: shared-resources
+  project: infru
 
 stages:
   - stage: validate
@@ -64,10 +64,10 @@ stages:
     jobs:
       - template: pipelines/jobs/terraform/plan.yml
         parameters:
-          workspace: staging
+          workspace: stage
  
-  - stage: 'Staging'
-    displayName: 'Deploy Staging environment'
+  - stage: 'Stage'
+    displayName: 'Deploy Stage environment'
     variables:
       - group: Development
 
@@ -75,4 +75,4 @@ stages:
       - template: pipelines/jobs/terraform/apply.yml
         parameters:
           project: ${{ variables.project }}
-          workspace: staging
+          workspace: stage
