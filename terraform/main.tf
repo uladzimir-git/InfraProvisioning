@@ -36,9 +36,9 @@ resource "azurerm_app_service" "spacegame" {
 
 output "appservice_name" {
   value       = azurerm_app_service.spacegame.name
-  description = "The App Service name for the ${lower(terraform.workspace)} environment"
+  description = "The App Service name"
 }
 output "website_hostname" {
   value       = azurerm_app_service.spacegame.default_site_hostname
-  description = "The hostname of the website in the ${lower(terraform.workspace)} environment"
+  description = "The hostname of the website"
 }
