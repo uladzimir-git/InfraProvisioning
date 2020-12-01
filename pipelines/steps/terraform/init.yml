@@ -9,6 +9,10 @@ steps:
         -backend-config="storage_account_name=tfsa10924" \
         -backend-config="container_name=tfstate" \
         -backend-config="key=terraform.tfstate"
+        terraform workspace new dev
+        terraform workspace new test
+        terraform workspace new staging
+        terraform workspace select dev
     displayName: Initialize Terraform
     workingDirectory: ${{ parameters.workingDirectory }}
     env:
