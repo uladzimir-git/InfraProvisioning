@@ -5,10 +5,10 @@ steps:
   - bash: |
       $TERRAFORM_BINARY init \
         -input=false \
-        -backend-config="resource_group_name="tf-storage-rg"" \
-        -backend-config="storage_account_name = "tfsa4962"" \
-        -backend-config="container_name = "tfstate"" \
-        -backend-config="key = "terraform.tfstate""
+        -backend-config="resource_group_name=tf-storage-rg" \
+        -backend-config="storage_account_name = tfsa4962" \
+        -backend-config="container_name = tfstate" \
+        -backend-config="key = terraform.tfstate "
     displayName: Initialize Terraform
     workingDirectory: ${{ parameters.workingDirectory }}
     env:
