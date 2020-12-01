@@ -7,9 +7,9 @@ variable "project_name" {
 }
 
 locals {
-  resource_group_name = "rg-${var.projectName}-${lower(terraform.workspace)}"
-  app_service_plan_name = "plan-${var.projectName}-${lower(terraform.workspace)}"
-  app_service_name = "app-${var.projectName}-${lower(terraform.workspace)}"
+  resource_group_name = "rg-${var.project_name}-${lower(terraform.workspace)}"
+  app_service_plan_name = "plan-${var.project_name}-${lower(terraform.workspace)}"
+  app_service_name = "app-${var.project_name}-${lower(terraform.workspace)}"
   
  
 }
