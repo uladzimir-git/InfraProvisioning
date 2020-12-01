@@ -15,10 +15,7 @@ steps:
 
   - bash: |
       az storage copy \
-        --subscription $(ARM_SUBSCRIPTION_ID) \
-        --blob-type AppendBlob \
         --source $(Build.ArtifactStagingDirectory)/terraform-output.json \
-        --account-name obrameterraform${{ parameters.workspace }} \
+        --account-name tfsa10924 \
         --destination-container terraformoutput \
-        --destination-blob ${{ parameters.project }}-${{ parameters.workspace }}.json
     displayName: Save Terraform output to Storage
