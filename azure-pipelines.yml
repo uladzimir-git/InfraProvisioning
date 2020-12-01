@@ -21,7 +21,7 @@ stages:
   - stage: validate
     displayName: Validate
     variables:
-      - group: shared
+      - group: Development
     jobs:
       - template: pipelines/jobs/terraform/validate.yml
 
@@ -29,7 +29,7 @@ stages:
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     displayName: Plan for development
     variables:
-      - group: shared
+      - group: Development
 
     jobs:
       - template: pipelines/jobs/terraform/plan.yml
@@ -39,7 +39,7 @@ stages:
   - stage: apply_dev
     displayName: Apply for development
     variables:
-      - group: shared
+      - group: Development
 
     jobs:
       - template: pipelines/jobs/terraform/apply.yml
