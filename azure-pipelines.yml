@@ -12,7 +12,7 @@ stages:
 
   - stage: plan_dev
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: Plan for development
+    displayName: Сreate an execution plan for DEV environment
     variables:
       - group: Development
 
@@ -34,7 +34,7 @@ stages:
 
   - stage: plan_test
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    displayName: Plan for test
+    displayName: Сreate an execution plan for TEST environment
     variables:
       - group: Development
 
@@ -53,6 +53,18 @@ stages:
         parameters:
           project: ${{ variables.project }}
           workspace: test
+ 
+ 
+  - stage: plan_staging
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    displayName: Сreate an execution plan for STAGE environment
+    variables:
+      - group: Development
+
+    jobs:
+      - template: pipelines/jobs/terraform/plan.yml
+        parameters:
+          workspace: staging
  
   - stage: 'Staging'
     displayName: 'Deploy Staging environment'
