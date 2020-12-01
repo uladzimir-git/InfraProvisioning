@@ -21,3 +21,24 @@ variable "app_service_name_prefix" {
   default = "tailspin-space-game-web"
   description = "The beginning part of your App Service host name"
 }
+
+variable "projectName" {
+  type = string
+}
+variable "serviceName" {
+  type = string
+}
+variable "environment" {
+  type = string
+}
+
+locals {
+  rgName   = "rg-${var.projectName}-${var.serviceName}-${var.environment}"
+  vnetName = "vnet-${var.environment}-${var.location}-001"
+  snetName = "snet-${var.environment}-${var.location}-001"
+  nicName  = "nic-01-${local.vmName}-${var.environment}-001"
+  pipName  = "pip-${local.vmName}-${var.environment}-${var.location}-001"
+}
+
+
+
