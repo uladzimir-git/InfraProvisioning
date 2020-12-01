@@ -1,12 +1,3 @@
-variable "project_name" {
-  default = "myProject"
-}
-
-variable "resource_group_name" {
-  default = "tailspin-space-game-rg"
-  description = "The name of the resource group"
-}
-
 variable "resource_group_location" {
   default = "westus"
   description = "The location of the resource group"
@@ -25,15 +16,11 @@ variable "app_service_name_prefix" {
 variable "projectName" {
   type = string
 }
-variable "serviceName" {
-  type = string
-}
-variable "environment" {
-  type = string
-}
+
 
 locals {
-  rgName   = "rg-${var.projectName}-${var.serviceName}-${var.environment}"
+  resource_group_name = "rg-${var.projectName}-${lower(terraform.workspace)}"
+  
   vnetName = "vnet-${var.environment}-${var.location}-001"
   snetName = "snet-${var.environment}-${var.location}-001"
   nicName  = "nic-01-${local.vmName}-${var.environment}-001"
