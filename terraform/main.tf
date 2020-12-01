@@ -9,6 +9,7 @@ variable "resource_group_name" {
 }
 
 variable "resource_group_location" {
+  default = "westus"
   description = "The location of the resource group"
 }
 
