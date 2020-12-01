@@ -21,17 +21,6 @@ stages:
         parameters:
           workspace: dev
 
-  - stage: 'Dev'
-    displayName: 'Deploy Dev environment'
-    variables:
-      - group: Development
-
-    jobs:
-      - template: pipelines/jobs/terraform/apply.yml
-        parameters:
-          project: ${{ variables.project }}
-          workspace: dev
-          
   - stage: 'Test'
     displayName: 'Deploy Test environment'
     variables:
@@ -43,10 +32,10 @@ stages:
           project: ${{ variables.project }}
           workspace: test
  
-   - stage: 'Staging'
+  - stage: 'Staging'
     displayName: 'Deploy Staging environment'
     variables:
-      - group: Development
+      - group: Staging
 
     jobs:
       - template: pipelines/jobs/terraform/apply.yml
