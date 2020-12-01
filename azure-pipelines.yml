@@ -24,7 +24,7 @@ stages:
   - stage: 'Test'
     displayName: 'Deploy Test environment'
     variables:
-      - group: Test
+      - group: Development
 
     jobs:
       - template: pipelines/jobs/terraform/apply.yml
@@ -35,7 +35,7 @@ stages:
   - stage: 'Staging'
     displayName: 'Deploy Staging environment'
     variables:
-      - group: Staging
+      - group: Development
 
     jobs:
       - template: pipelines/jobs/terraform/apply.yml
