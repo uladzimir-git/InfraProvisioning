@@ -23,7 +23,7 @@ jobs:
                 destinationFolder: "$(Pipeline.Workspace)"
                 cleanDestinationFolder: false
 
-            - bash: chmod -R +x $(Pipeline.Workspace)/terraform/.terraform/plugins/**/terraform*
+            - bash: chmod -R +x $(Pipeline.Workspace)/terraform/.terraform/plugins/registry.terraform.io/hashicorp/azurerm/2.5.0/linux_amd64/terraform*
               displayName: Make Terraform plugins executable
 
             - template: ../../steps/terraform/install.yml
