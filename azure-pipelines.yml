@@ -3,21 +3,6 @@ variables:
   project: shared-resources
 
 stages:
-  # - stage: prestate
-  #   displayName: prestate
-  #   variables:
-  #     - group: development
-  #     - group: shared
-  #   jobs:
-  #     - job: runbash
-  #       steps:
-  #       - task: Bash@3
-  #         inputs:
-  #           targetType: 'filePath' # Optional. Options: filePath, inline
-  #           filePath: ./tools/create-terraform-backend.sh
-  #           arguments: dev
-    
-
   - stage: validate
     displayName: Validate
     variables:
@@ -36,8 +21,8 @@ stages:
         parameters:
           workspace: dev
 
-  - stage: apply_dev
-    displayName: Apply for development
+  - stage: 'Dev'
+    displayName: 'Deploy Dev environment'
     variables:
       - group: Development
 
@@ -46,3 +31,25 @@ stages:
         parameters:
           project: ${{ variables.project }}
           workspace: dev
+          
+  - stage: 'Test'
+    displayName: 'Deploy Test environment'
+    variables:
+      - group: Test
+
+    jobs:
+      - template: pipelines/jobs/terraform/apply.yml
+        parameters:
+          project: ${{ variables.project }}
+          workspace: test
+ 
+   - stage: 'Staging'
+    displayName: 'Deploy Staging environment'
+    variables:
+      - group: Development
+
+    jobs:
+      - template: pipelines/jobs/terraform/apply.yml
+        parameters:
+          project: ${{ variables.project }}
+          workspace: staging
